@@ -1,7 +1,8 @@
 import express from "express";
 import { body } from "express-validator";
-import { login } from "../controllers/auth.controller.js";
+import { login, revalidateSession } from "../controllers/auth.controller.js";
 import { validateRequest } from "../middleware/validateRequest.js";
+import { validateJWT } from "../middleware/validateJWT.js";
 
 const route = express.Router()
 
@@ -16,5 +17,6 @@ route.post(
         validateRequest
     ],
     login)
+    .get("/revalidate-session", validateJWT, revalidateSession )
 
 export default route
