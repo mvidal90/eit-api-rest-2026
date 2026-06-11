@@ -1,7 +1,10 @@
-import jwt from "jsonwebtoken"
-import { User } from "../models/User.js"
+import type { RequestHandler } from "express";
+import type { Payload } from "../@types/jwt.ts";
 
-export const validateJWT = async (req, res, next) => {
+import jwt from "jsonwebtoken"
+import { User } from "../models/User.ts"
+
+export const validateJWT : RequestHandler = async (req, res, next) => {
     const token = req.header("Authorization")?.split(" ")[1];
 
     if (!token) {
@@ -12,7 +15,7 @@ export const validateJWT = async (req, res, next) => {
     }
 
     try {
-        const payload = jwt.verify(token, process.env.JWT_SEED_SECRET)
+        const payload = jwt.verify(token, process.env.JWT_SEED_SECRET as string) as Payload
         const { id, email } = payload
         const user = await User.findOne({_id: id, email, deletedAt: null })
 

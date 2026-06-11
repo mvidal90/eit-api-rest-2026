@@ -1,10 +1,10 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import productRoutes from "./routes/product.routes.js"
-import userRoutes from "./routes/user.routes.js"
-import authRoutes from "./routes/auth.routes.js"
-import { dbConection } from './database/dbConection.js';
+import productRoutes from "./routes/product.routes.ts"
+import userRoutes from "./routes/user.routes.ts"
+import authRoutes from "./routes/auth.routes.ts"
+import { dbConection } from './database/dbConection.ts';
 
 const PORT = 3000
 

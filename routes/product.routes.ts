@@ -1,9 +1,9 @@
 import express from "express";
 import { body, param } from "express-validator";
 
-import { createProduct, deleteProduct, getProducts, replaceOrCreateProduct, updateProduct } from "../controllers/product.controller.js";
-import { validateJWT } from "../middleware/validateJWT.js";
-import { validateRequest } from "../middleware/validateRequest.js";
+import { createProduct, deleteProduct, getProducts, replaceOrCreateProduct, updateProduct } from "../controllers/product.controller.ts";
+import { validateJWT } from "../middleware/validateJWT.ts";
+import { validateRequest } from "../middleware/validateRequest.ts";
 
 const route = express.Router()
 

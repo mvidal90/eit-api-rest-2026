@@ -1,6 +1,7 @@
-import { Product } from "../models/Product.js";
+import type { RequestHandler } from "express";
+import { Product } from "../models/Product.ts";
 
-export const getProducts = async (req, res) => {
+export const getProducts : RequestHandler = async (req, res) => {
     try {
         const products = await Product.find({ deletedAt: null })
 
@@ -17,7 +18,7 @@ export const getProducts = async (req, res) => {
     }
 }
 
-export const createProduct = async (req, res) => {
+export const createProduct : RequestHandler = async (req, res) => {
     const { body } = req;
     try {
         const newProduct = await Product.create(body)
@@ -43,7 +44,7 @@ export const createProduct = async (req, res) => {
     }
 }
 
-export const replaceOrCreateProduct = async (req, res) => {
+export const replaceOrCreateProduct : RequestHandler = async (req, res) => {
     const { idProduct } = req.params;
     const { body } = req;
 
@@ -84,7 +85,7 @@ export const replaceOrCreateProduct = async (req, res) => {
     }
 }
 
-export const updateProduct = async (req, res) => {
+export const updateProduct : RequestHandler = async (req, res) => {
     const { idProduct } = req.params;
     const { body } = req;
 
@@ -115,7 +116,7 @@ export const updateProduct = async (req, res) => {
     }
 }
 
-export const deleteProduct = async (req, res) => {
+export const deleteProduct : RequestHandler = async (req, res) => {
     const { idProduct } = req.params;
 
     try {

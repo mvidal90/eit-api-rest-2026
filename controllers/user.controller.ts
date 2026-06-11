@@ -1,7 +1,9 @@
-import bcrypt from "bcrypt";
-import { User } from "../models/User.js";
+import type { RequestHandler } from "express";
 
-export const createUser = async (req, res) => {
+import bcrypt from "bcrypt";
+import { User } from "../models/User.ts";
+
+export const createUser : RequestHandler = async (req, res) => {
     const { body } = req;
 
     try {
@@ -21,7 +23,7 @@ export const createUser = async (req, res) => {
 
         //delete newUser._doc.password
 
-        const { password, ...userWithoutPassword } = newUser._doc
+        const { password, ...userWithoutPassword } = newUser.toObject()
 
         res.status(201).json({ // 201 -> Created
             ok: true,

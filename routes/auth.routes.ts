@@ -1,8 +1,8 @@
 import express from "express";
 import { body } from "express-validator";
-import { login, revalidateSession } from "../controllers/auth.controller.js";
-import { validateRequest } from "../middleware/validateRequest.js";
-import { validateJWT } from "../middleware/validateJWT.js";
+import { login, revalidateSession } from "../controllers/auth.controller.ts";
+import { validateRequest } from "../middleware/validateRequest.ts";
+import { validateJWT } from "../middleware/validateJWT.ts";
 
 const route = express.Router()
 

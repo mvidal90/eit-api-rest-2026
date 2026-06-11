@@ -1,9 +1,10 @@
+import type { RequestHandler } from "express";
 import bcrypt from "bcrypt";
-import { User } from "../models/User.js";
+import { User } from "../models/User.ts";
 
-import { generateJWT } from "../utils/jwt.js";
+import { generateJWT } from "../utils/jwt.ts";
 
-export const login = async (req, res) => {
+export const login : RequestHandler = async (req, res) => {
     const { email, password } = req.body;
 
     try {
@@ -26,7 +27,7 @@ export const login = async (req, res) => {
             })
         }
 
-        const { password: _, ...userWithoutPassword } = user._doc
+        const { password: _, ...userWithoutPassword } = user.toObject()
 
         const jwt = generateJWT({ id: userWithoutPassword._id, email: userWithoutPassword.email })
 
@@ -46,7 +47,7 @@ export const login = async (req, res) => {
     }
 }
 
-export const revalidateSession = async (req, res) => {
+export const revalidateSession : RequestHandler = async (req, res) => {
     const { userId } = req
 
     try {
@@ -58,7 +59,7 @@ export const revalidateSession = async (req, res) => {
                 msg: "No se encontró el usuario."
             })
         }
-        const { password: _, ...userWithoutPassword } = user._doc
+        const { password: _, ...userWithoutPassword } = user.toObject()
 
         const jwt = generateJWT({ id: userWithoutPassword._id, email: userWithoutPassword.email })
 
